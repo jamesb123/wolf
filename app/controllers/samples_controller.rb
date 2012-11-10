@@ -10,14 +10,17 @@
 #pets = Pet.find(:all, :limit => 10, :conditions => ["owner_id = ?", owner_id]) - returns no more than the number of rows specified by :limit.
 #pets = Pet.find(:all, :offset => 50, :limit => 10) - uses offset to skip the first 50 rows.
 
+# rdoc for jim\carmen http://jim.github.com/carmen/
+
 class SamplesController < ApplicationController
-  # GET /samples
-  # GET /samples.xml
+
+before_filter :set_project
+  
   def index
     if current_user.login == "admin"
-      @sample = Sample.find(:all, :order => 'date_submitted' , :include => [:genders, :dna_results, :mt_dnas], :conditions => "project_id = 7 and remote_data_entry = true")
+      @sample = Sample.find(:all, :order => 'date_submitted' , :include => [:genders, :dna_results, :mt_dnas], :conditions => "project_id = '#{@prid}' and remote_data_entry = true")
     else
-      @sample = Sample.find(:all, :order => 'date_submitted' , :include => [:genders, :dna_results, :mt_dnas], :conditions => "project_id = 7 and remote_data_entry = true and user_id = '#{current_user.id}'")
+      @sample = Sample.find(:all, :order => 'date_submitted' , :include => [:genders, :dna_results, :mt_dnas], :conditions => "project_id = '#{@prid}' and remote_data_entry = true and user_id = '#{current_user.id}'")
     end
 
     respond_to do |format|
@@ -40,17 +43,6 @@ class SamplesController < ApplicationController
     end
   end
   
-  # GET /samples/1
-  # GET /samples/1.xml
-#  def tracker
-#    @sample = Sample.find(:all, :include => [:genders, :dna_results, :mt_dnas ], :conditions => "project_id = 1 and approved = false and user_id = '#{current_user.id}'")
-#    @samples = Sample.find(:all, :conditions => "project_id = 1 and approved = false and user_id = '#{current_user.id}' " )
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.xml  { render :xml => @sample }
-#    end
-#  end
-
 
   # GET /samples/new
   # GET /samples/new.xml
@@ -59,7 +51,7 @@ class SamplesController < ApplicationController
     @sample.submitted_by =  current_user.name
     @sample.user_id = current_user.id
     @sample.date_submitted = Date.today
-    @sample.project_id = 7
+    @sample.project_id = @prid
     @sample.approved = false
     @sample.remote_data_entry = true
     @sample.import_permit = "CA027"
@@ -97,7 +89,7 @@ class SamplesController < ApplicationController
     respond_to do |format|
       if @sample.update_attributes(params[:sample])
         flash[:notice] = 'Sample was successfully updated.'
-        format.html { redirect_to(@sample, :notice => 'Newsample was successfully updated.') }
+        format.html { redirect_to(@sample, :notice => 'New sample was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

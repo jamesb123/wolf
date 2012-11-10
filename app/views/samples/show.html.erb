@@ -56,22 +56,10 @@ vertical-align:middle;
 			<tr><td class="nempty"width=35%>Field Code</td><td width=65% ><%= @sample.field_code %></td></tr>
 		<%end%>
 
-	  	<%if @sample.organism_index.blank?%>
-			<tr><td class="empty" width=35%>Necropsy Sample Number</td><td width=65% ><%= @sample.organism_index %></td></tr>
-		<%else%>
-			<tr><td class="nempty"width=35%>Necropsy Sample Number</td><td width=65% ><%= @sample.organism_index %></td></tr>
-		<%end%>
-
 		<%if @sample.sample_bc.blank?%>
 			<tr><td class="empty">Sample Barcode</td></td><td><%= @sample.sample_bc %></td>
 		<%else%>
 			<tr><td class="nempty">Sample Barcode</td></td><td><%= @sample.sample_bc %></td>
-		<%end%>
-
-		<%if @sample.photo_id.blank?%>
-			<tr><td class="empty">Sighting ID</td></td><td><%= @sample.photo_id %></td>
-		<%else%>
-			<tr><td class="nempty">Sighting ID</td></td><td><%= @sample.photo_id %></td>
 		<%end%>
 
 		<%if @sample.field_ident.blank?%>
@@ -136,7 +124,7 @@ vertical-align:middle;
 		
 		<%if @sample.mt_dnas.blank? %>
 				<tr><td class="empty">Date Sequenced</td><td></td></tr>
-				<tr><td class="empty">Haplotype</td><td></td></tr>
+				<tr><td class="empty">mtDNA Haplotype</td><td></td></tr>
 		<%else%>
 			<% @sample.mt_dnas.each do |m| %>
 			<%if m.date_sequenced.blank? %>
@@ -145,9 +133,9 @@ vertical-align:middle;
 				<tr><td class="nempty">Date Sequenced</td><td><%= nice_date_display(m.date_sequenced) %> </td></tr>
 			<%end%>
 			<%if m.haplotype.blank? %>
-				<tr><td class="empty">Haplotype</td><td></td></tr>
+				<tr><td class="empty">mtDNA Haplotype</td><td></td></tr>
 			<%else%>
-				<tr><td class=nempty>Haplotype</td><td>  <%= m.haplotype %> </td></tr>
+				<tr><td class=nempty>mtDNA Haplotype</td><td>  <%= m.haplotype %> </td></tr>
 			<%end%>
 			<%end%>
 		<%end%>
@@ -168,12 +156,6 @@ vertical-align:middle;
 					<tr><td class="nempty">Gender</td><td><%= g.gender %></td></tr>
 				<%end%>
 			<%end%>
-		<%end%>
-
-		<%if @sample.current_location.blank?%>
-			<tr><td class="empty">Current Location</td></td><td><%= @sample.current_location %></td>
-		<%else%>
-			<tr><td class="nempty">Current Location</td></td><td><%= @sample.current_location %></td>
 		<%end%>
 
 		<%if @sample.comments.blank?%>

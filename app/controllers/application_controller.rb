@@ -4,17 +4,24 @@
 require "current_project_helpers"
 require 'carmen'
 include Carmen
-require 'country_select'
-# require 'digest/sha1'
-# require "thread"
 
 MM = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 # MM = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
-TT = [ "Skin", "Muscle", "Bone", "Brain", "Kidney", "Heart", "Other" ]
+TT = [ "Scat", "Skin", "Muscle", "Bone", "Brain", "Kidney", "Heart", "Other" ]
 DD = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]
 YY = ["2007","2008","2009","2010","2011","2012","2013","2014","2015"]
 ACC = ['Very Accurate (to 2m)', 'Accurate (to 10m)', 'Reliable (to 100m)','Approximate (to 500m)','Moderate (to 1000m)', 'General (to 10,000m)', 'Vague (to 100,000m)']
 LMM = [ 'Random', 'Measured', 'Centroid']
+PP = ["Canada","U.S."]
+SCAT = ["A+ = scat was wet, shiny, steaming", 
+        "A  = scat was wet, shiny but at ambient temperature",
+        "B  = scat was dry but shiny with almost no fur sticking out",
+        "C  = scat was dry with minimal fur sticking out",
+        "D  = scat was dry and looked mostly like a furry animal",
+        "E  = scat was dry and looked like clay"]
+AGE = ["<12 hours","<24 hours","<36 hours","<48 hours",">48 hours","Unknown"]
+YN = ["Yes","No"]  
+
 
 class TrueClass
   def yesno
@@ -55,8 +62,9 @@ class ApplicationController < ActionController::Base
 #  include CurrentProjectHelper
 #  include InPlaceEditing
 
-  prepend_before_filter :login_required  
+  prepend_before_filter :set_project, :login_required  
   
+
 #  ActiveScaffold.set_defaults do |config|
 #    config.security.current_user_method = :current_user
 #    config.security.default_permission = false
@@ -94,5 +102,31 @@ class ApplicationController < ActionController::Base
 
     send_data csv_string, :filename => "#{table_name}.csv"
   end
+
+
+# set the project id if part of the url
+def set_project
+  @host = request.host
+
+  if @host == 'localhost'
+    @prid=7
+    return
+  end
+
+  if @host =~ /7/ 
+    @prid = 7
+    return '7' 
+  else
+    if @host =~ /64/
+      @prid = 64
+    return '64'
+    else
+      @prid = 0
+      return ''
+    end
+  end
+end
+
+
 
 end

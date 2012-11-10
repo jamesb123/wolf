@@ -1,4 +1,5 @@
 class Sample < ActiveRecord::Base
+
   belongs_to :organism
   belongs_to :locality_type
   belongs_to :shippingmaterial
@@ -24,6 +25,10 @@ class Sample < ActiveRecord::Base
   accepts_nested_attributes_for :mt_dnas
   
   before_save :assign_collected_YMD
+  after_create :send_sample_mail
+  def send_sample_mail
+     Emailer.deliver_submission('drburrett@gmail.com', "New Sample Submitted", self.submitted_by, self.project_id, self.field_code ) 
+  end
 
 
   def assign_collected_YMD

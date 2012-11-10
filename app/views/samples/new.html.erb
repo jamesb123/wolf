@@ -47,25 +47,35 @@ text-align:left;
 		<tr><th>Name</th><th>Value</th><th>Description</th></tr>
          <tr></tr>
 	<% form_for(@sample) do |f| %>
+	<%= f.error_messages %>
 	<tr><td  width="25%"><%= f.label :submitted_by %></td><td width = "35%" ><%= f.text_field :submitted_by %></td><td width = "40%" > Current user Logged in</td></tr>
+	<tr><td><%= f.label :field_code %></td><td><%= f.text_field :field_code %></td><td>How you've labeled the sample</td></tr>
+	<tr><td><%= f.label :sample_bc, 'Sample Barcode' %></td><td><%= f.text_field :sample_bc %></td><td>Sample Bar Code if available</td></tr>
 	<tr align=left><td><%= f.label :shipping_date %></td><td><%= f.calendar_date_select :shipping_date %></td><td>The date sample was shipped - click on calendar</td></tr>
 	<tr><td><%= f.label :date_submitted %></td><td><%= f.text_field :date_submitted,:value => f.object.date_submitted.strftime('%Y-%m-%d')  unless f.object.date_submitted.nil?  %></td><td>Default is today's date</td></tr>
-	<tr><td><%= f.label :field_code %></td><td><%= f.text_field :field_code %></td><td>For biopsy samples this will be the whale letter (e.g. A) For others, this will be the unique identifier for the relevant event (e.g. necropsy)  </td></tr>
-	<tr><td><%= f.label :organism_index, 'Necropsy Sample Number' %></td><td><%= f.text_field :organism_index %></td><td>For Necropsies only. This distiguishes multiple samples from the same individual (e.g. 1,2,3,4)<br>Please clearly label samples this way.</td></tr>
-	<tr><td><%= f.label :sample_bc, 'Sample Barcode' %></td><td><%= f.text_field :sample_bc %></td><td>Sample Bar Code if available</td></tr>
-	<tr><td><%= f.label :photo_id, 'Sighting ID' %></td><td><%= f.text_field :photo_id %></td><td>The unique sighting photo record number associated with this sample</td></tr>
-	<tr><td><%= f.label :field_indent, 'Field Identification (NEA)'%></td><td><%= f.text_field :field_ident %></td><td>The potential NEA # of the individual sampled</td></tr>
 	<tr><td><%= f.label :collected_on_day %></td><td><%= f.collection_select(:collected_on_day , Sample::DD, :to_s, :to_s, {:include_blank => true, :prompt => true } , {"style" => "width:105px" } ) %></td><td>Choose Day from drop down list 1-31 or blank</tr>
 	<tr><td><%= f.label :collected_on_month %></td><td><%= f.collection_select(:collected_on_month , Sample::MM, :to_s, :to_s, {:include_blank => true, :prompt => true}, {"style" => "width:105px" } ) %></td><td>Choose Month from drop down list 1-12 or blank</td></tr>
 	<tr><td><%= f.label :collected_on_year %></td><td><%= f.collection_select(:collected_on_year , Sample::YY, :to_s, :to_s, {:include_blank => true, :prompt => true }, {"style" => "width:105px" } ) %></td><td>Choose Year from drop down list</td></tr>
+	<tr><td><%= f.label :country %></td><td><%= f.country_select(:country, ['CA','US'], options={},{"style" => "width:150px" } ) %></td><td>Choose Country from drop down list</td></tr>
+	<tr><td><%= f.label :province %></td><td><%= f.text_field :province %></td><td>Enter Province</td></tr>
+	<tr><td><%= f.label :locality %></td><td><%= f.text_field :locality %></td><td>Name of the nearest town, park, etc.</td></tr>
+	<tr><td><%= f.label :latitude %></td><td><%= f.text_field :locality %></td><td>Coordinates, if available in Decimal degrees.</td></tr>
+	<tr><td><%= f.label :longitude %></td><td><%= f.text_field :locality %></td><td>Example: Lat: 44.356, Long -78.275</td></tr>
+	<tr><td><%= f.label :location_accuracy %></td><td><%= f.collection_select(:location_accuracy , Sample::ACC, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:150px" } ) %></td><td>Choose Location Accuracy from drop down list</td></tr>
+	<tr><td><%= f.label :location_measurement_method %></td><td><%= f.collection_select(:location_measurement_method , Sample::LMM, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Location Measurement Method drop down list</td></tr>
 	<tr><td><%= f.label :organization_id %></td><td><%= f.collection_select( :organization_id, Organization.find(:all), :id, :org_name, {:include_blank => true, :prompt => true }, {"style" => "width:105px" }) %></td><td>The team who collected the sample</td></tr>
 	<tr><td><%= f.label :text_tissue_type %></td><td><%= f.collection_select( :text_tissue_type , Sample::TT, :to_s, :to_s, {:include_blank => true, :prompt => true }, {"style" => "width:105px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
+	<tr><td><%= f.label :condition, 'Scat Condition' %></td><td><%= f.collection_select( :condition , Sample::SCAT, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
+	<tr><td><%= f.label :age, 'Scat Age' %></td><td><%= f.collection_select( :age , Sample::AGE, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
+	<tr><td><%= f.label :rehydrated, 'Scat Rehydrated' %></td><td><%= f.collection_select( :rehydrated , Sample::YN, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
+	<tr><td><%= f.label :diet, 'Scat Diet'%></td><td><%= f.collection_select( :diet_analysis , Sample::YN, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
 	<tr><td><%= f.label :export_permit %></td><td><%= f.text_field :export_permit %></td><td>Export Permit</td></tr> 
-	<tr height="25"><td><%= f.label :import_permit %></td><td><%= f.text_field :import_permit %></td><td>Import Permit</td></tr> 
-	<tr><td><%= f.label :current_location %></td><td><%= f.text_field :current_location %></td><td>The current location of the sample</td></tr>
-	<tr><td><%= f.label :comments %></td><td><%= f.text_field :comments %></td><td>Any other comments relevant to this sample</td></tr>
+	<tr><td><%= f.label :storage_medium_id, 'Storage Medium'%></td><td><%= f.label :storage_medium_id %></td><td><%= f.collection_select( :storage_medium_id, StorageMedium.find(:all), :id, :storage_medium,{ :include_blank => true,  :prompt => true }, {"style" => "width:200px" }) %></td><td>How is the sample being stored</td></tr>
+	<tr><td><%= f.label :shippingmaterial_id, 'Shipping Medium'%></td><td><%= f.label :shippingmaterial_id %></td><td><%= f.collection_select( :shippingmaterial_id, Shippingmaterial.find(:all), :id, :medium_short_desc,{ :include_blank => true,  :prompt => true }, {"style" => "width:200px" }) %></td><td>How is the sample packaged for shipping?</td></tr>
+	<tr><td><%= f.label :current_location, 'Tracking # (location)' %></td><td><%= f.text_field :current_location %></td><td>Courier tracker # if available</td></tr>
+	<tr><td><%= f.label :comments, 'Sample Comments' %></td><td><%= f.text_field :comments %></td><td>Any other comments relevant to this sample</td></tr>
 
-	<%= f.hidden_field :project_id, {:value => 7} %>
+	<%= f.hidden_field :project_id, {:value => @prid} %>
 	<%= f.hidden_field :user_id  %>
 	<%= f.hidden_field :remote_data_entry, {:value => true} %>
 
@@ -73,7 +83,7 @@ text-align:left;
 	<% @sample.collected_on_day = params[:collected_on_day] %>
 	<% @sample.collected_on_month = params[:collected_on_month] %>
 	<% @sample.collected_on_year = params[:collected_on_year] %>
-	<% @sample.project_id = 7%>
+	<% @sample.project_id = @prid%>
 	<% @sample.import_permit = "CA027"%>
 	<tr><td><%= f.submit "Create" %></td></tr>
 <% end %>

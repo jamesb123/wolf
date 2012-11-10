@@ -28,9 +28,7 @@ class User < ActiveRecord::Base
 
   after_create :send_welcome_mail
   def send_welcome_mail
-#     Emailer.contact(self.email, "test", self.name).deliver
      Emailer.deliver_contact(self.email, "DNA Account Confirmation", self.name, self.login, self.password) 
-#     Emailer.deliver_contact("james@burrett.com", "subject from user", "name")
   end
   
   # Virtual attribute for the unencrypted password

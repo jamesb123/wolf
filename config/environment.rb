@@ -65,7 +65,7 @@ Rails::Initializer.run do |config|
 #   :password => "nrdpfc12",
 #}
 
-config.action_mailer.raise_delivery_errors = true
+ config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp 
   config.action_mailer.default_content_type = "text/html" 
   config.action_mailer.default_url_options = { :host => "burrett.org" } 
