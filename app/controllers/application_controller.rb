@@ -22,6 +22,9 @@ SCAT = ["A+ = scat was wet, shiny, steaming",
 AGE = ["<12 hours","<24 hours","<36 hours","<48 hours",">48 hours","Unknown"]
 YN = ["Yes","No"]  
 
+  def nice_date_display(the_date)
+    return (the_date ? the_date.strftime('%Y.%m.%d') : '')
+  end
 
 class TrueClass
   def yesno
@@ -65,13 +68,6 @@ class ApplicationController < ActionController::Base
   prepend_before_filter :set_project, :login_required  
   
 
-#  ActiveScaffold.set_defaults do |config|
-#    config.security.current_user_method = :current_user
-#    config.security.default_permission = false
-#    config.actions.exclude :live_search
-#    config.actions.add :search
-#  end
-  
   # This isn't working, I'm not quite sure why...
   # something isn't scoped right...
 
