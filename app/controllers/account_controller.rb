@@ -6,8 +6,7 @@ class AccountController < ApplicationController
 
   skip_before_filter :login_required, :except => :register_to_project
   skip_before_filter :set_current_project
-#  before_filter :set_project
-  
+
   def authorized?
     current_user ? true : false
   end
@@ -25,7 +24,7 @@ def login
     
     return unless request.post?
     self.current_user = User.authenticate(params[:login], params[:password])
-#    self.current_project = params[:project_id] unless params[:project_id].blank?
+    self.current_project = params[:project_id] unless params[:project_id].blank?
     if logged_in?
       if params[:remember_me] == "1"
         self.current_user.remember_me
@@ -35,7 +34,7 @@ def login
       redirect_to :controller => '/samples', :action => 'menu' , :notice => "Logged in successfully"
     else
       flash[:notice] = "Incorrect login, please try again."
-      redirect_to(:action => 'index',:flash => { :notice => "Log in failed"})
+      redirect_to(:action => 'incorrect_login',:flash => { :notice => "Log in failed"})
     end
   end
 

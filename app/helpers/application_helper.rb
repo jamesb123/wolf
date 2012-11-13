@@ -2,10 +2,6 @@
 module ApplicationHelper
 #  include ActiveUploadHelper
 
-  def nice_date_display(the_date)
-    # return the_date.strftime('%Y-%m-%d')
-    return (the_date ? the_date.strftime('%Y.%m.%d') : '')
-  end
 
   def project_form_column(record, input_name)
     projects = current_user.is_admin ?
