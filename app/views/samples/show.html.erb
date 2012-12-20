@@ -24,7 +24,7 @@ vertical-align:middle;
 	  <tr>
 		<td width="900" height=900" align="center" valign="top" bgcolor="#FFFFFF"><table width="900" height="169" border="0">
           <tr>
-            <th scope="col"><p><%= image_tag "wolfheader.jpg", :width => "900", :height => "169" %></p>
+            <th scope="col"><p><%= image_tag "wolfheader4.jpg", :width => "900", :height => "169" %></p>
               </th>
           </tr>
         </table>
@@ -62,22 +62,10 @@ vertical-align:middle;
 			<tr><td class="nempty">Sample Barcode</td></td><td><%= @sample.sample_bc %></td>
 		<%end%>
 
-		<%if @sample.field_ident.blank?%>
-			<tr><td class="empty">Field Identification</td></td><td><%= @sample.field_ident %></td>
-		<%else%>
-			<tr><td class="nempty">Field Identification</td></td><td><%= @sample.field_ident %></td>
-		<%end%>
-
 	  	<%if @sample.date_collected.blank?%>
 			<tr><td class="empty" width=35%>Date Collected</td><td width=65% ><%= nice_date_display(@sample.date_collected) %></td></tr>
 		<%else%>
 			<tr><td class="nempty"width=35%>Date Collected</td><td width=65% ><%= nice_date_display(@sample.date_collected) %></td></tr>
-		<%end%>
-
-	  	<%if @sample.organization_id.nil?%>
-			<tr><td class="empty" width=35%>Organization</td><td width=65% ><%= '' %></td></tr>
-		<%else%>
-			<tr><td class="nempty"width=35%>Organization</td><td width=65% ><%= @org.org_name %></td></tr>
 		<%end%>
 
 	  	<%if @sample.text_tissue_type.blank?%>

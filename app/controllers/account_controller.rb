@@ -1,8 +1,4 @@
 class AccountController < ApplicationController
-#  layout "master"
-
-  # If you want "remember me" functionality, add this before_filter to Application Controller
-  #  before_filter :login_from_cookie
 
   skip_before_filter :login_required, :except => :register_to_project
   skip_before_filter :set_current_project
@@ -24,12 +20,9 @@ def login
     
     return unless request.post?
     self.current_user = User.authenticate(params[:login], params[:password])
-    self.current_project = params[:project_id] unless params[:project_id].blank?
+
     if logged_in?
-      if params[:remember_me] == "1"
-        self.current_user.remember_me
-        cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
-      end
+      :set_project  
       flash[:notice] = "Logged in successfully"
       redirect_to :controller => '/samples', :action => 'menu' , :notice => "Logged in successfully"
     else

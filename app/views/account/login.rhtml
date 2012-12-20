@@ -8,7 +8,7 @@ text-align:left;
 }
 th
 {
-background-color:#d2dbec;
+background-color:#d8d770;
 color:black;
 }
 </style>
@@ -19,8 +19,8 @@ color:black;
 	  <tr>
 		<td width="900" height="450" align="center" valign="top" bgcolor="#FFFFFF"><table width="800" height="169" border="0">
           <tr>
-            <th scope="col"><p><%= image_tag "wolfheader.jpg", :width => "900", :height => "169" %></p>
-              </th>
+            <th scope="col"><p><%= image_tag "wolfheader4.jpg", :width => "900", :height => "169" %></p></th>
+              <tr><td>photo credit/copyright Michael Runtz</td></tr>
           </tr>
         </table>
 	
@@ -29,16 +29,17 @@ color:black;
             <tr></tr>
 			
 			<tr><%= error_messages_for :user %></tr>
-<tr><td  colheight=50% colspan=2>Welcome to the NRDPFC Wolf Sample Submission/Tracking website.<br>
-Please logon in using the following boxes.<br>
-If you do not have a login yet, please click on "Create New Login" link below.<br>
-<b>For help please contact Meagan Moeyaert,  mmoeyaert@nrdpfc.ca</b></td></tr><tr>
+			<tr><td  colheight=50% colspan=2><%= @pr_desc%><br><p></p>
+			Please logon in using the following boxes.<br>
+			If you do not have a login yet, please click on "Create New Login" link below.<br>
+			<b>For help please contact info@nrdpfc.ca</b></td></tr>
 
 			<% form_tag do -%>
 				<tr><td  width = "20%" height = "30" ><label for="login">Login</label><td><%= text_field_tag 'login' %></td></tr>
 				<tr height = 50><td width=150><label for="password">Password</label></td><td><%= password_field_tag 'password' %></td></tr>
 				<tr height = 50><td colspan=2><%= submit_tag 'Log in' %></td><td></td></tr>
  				<tr><td width = 300 colspan=2><%= link_to "Create New Login", :controller => "/account", :action => "signup" %></td></tr>
+				<tr><td width=300 colspan=2><%= link_to "Importing and Exporting Samples for Scientific Research", :controller => "/account", :action => "pdf" %></td></tr>
 			<% end -%>
             </tr>
           </table>
@@ -47,12 +48,8 @@ If you do not have a login yet, please click on "Create New Login" link below.<b
           <p align="left">&nbsp;</p>
 			<tr>
               <td><div align="center">
-              	<%= image_tag "dfo.jpg", :alt => "1", :width => "228", :height => "50", :border => "0" %>
 				<%= image_tag "trentu.jpg", :alt => "1", :width => "162", :height => "50", :border => "0" %>
-				<%= image_tag "wwf.jpg", :alt => "1", :width => "37", :height => "50", :border => "0" %>
 				<%= image_tag "nrdpfc.jpg", :alt => "1", :width => "67", :height => "50", :border => "0"  %>
-				<%= image_tag "nea.jpg", :alt => "1", :width => "111", :height => "50", :border => "0" %>
-				<%= image_tag "canadianwhale.jpg", :alt => "1", :width => "153", :height => "50", :border => "0" %>
 				</div></td>
 			</tr>
       </table>

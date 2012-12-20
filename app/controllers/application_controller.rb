@@ -105,19 +105,26 @@ def set_project
   @host = request.host
 
   if @host == 'localhost'
-    @prid=7
-    return
+    @prid=64
+    @pr_name = 'MEC'
+    @pr_desc = 'Eastern Wolf Survey - Searching for Eastern Wolves in Southern Ontario and Quebec'
+    return '64'
   end
 
   if @host =~ /7/ 
     @prid = 7
+    @pr_name = 'CAN'
+    @pr_desc = 'Wolf and Coyote DNA Bank'
     return '7' 
   else
     if @host =~ /64/
       @prid = 64
+      @pr_name = 'MEC'
+      @pr_desc = 'Eastern Wolf Survey - Searching for Eastern Wolves in Southern Ontario and Quebec'
     return '64'
     else
       @prid = 0
+      @pr_desc = 'unknown project zero'
       return ''
     end
   end

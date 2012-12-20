@@ -14,8 +14,7 @@
 
 class SamplesController < ApplicationController
 
-before_filter :set_project
-  
+
   def index
     if current_user.login == "admin"
       @sample = Sample.find(:all, :order => 'date_submitted' , :include => [:genders, :dna_results, :mt_dnas], :conditions => "project_id = '#{@prid}' and remote_data_entry = true")

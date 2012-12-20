@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
-   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  </head>
 <html>
+<%if @pr_id = 64%>
+<%= stylesheet_link_tag "MEC" %>
+<%else%>
+<%= stylesheet_link_tag "basic" %>
+<%end%>
 <style type="text/css">
 table, td, th
 {
@@ -15,44 +13,39 @@ text-align:left;
 }
 th
 {
-background-color:#d2dbec;
 color:black;
 }
+
 </style>
 
 <body>
 <table width="1024" border="0">
-  <tr>
-    <td width=900 height="450" bgcolor="#d8d770">
-	<table width="900" height="450" border="0" align="center" bordercolor="#ABBCD8">
-	  <tr>
-		<td width="900" height="450" align="center" valign="top" bgcolor="#FFFFFF"><table width="800" height="169" border="0">
-          <tr>
-            <th scope="col"><p><%= image_tag "wolfheader.jpg", :width => "900", :height => "169" %></p>
-              </th>
-          </tr>
-        </table>
-          <table width="600" height="295" orderride border="0" borderstyle="hidden" align="center" cellspacing="1" >
+  <tr><td width=900 height="450" bgcolor="#d8d770">
+	<table width="900" height="450" border="0" align="center" bordercolor="#d8d770">
+	  	<tr><td width="900" height="450" align="center" valign="top" bgcolor="#FFFFFF">
+		<table width="800" height="169" border="0" bgcolor="#d8d770">
+          <th scope="col"><%= image_tag "wolfheader4.jpg", :width => "900", :height => "169" %>photo credit/copyright Michael Runtz</th>
+    	</table>
+        <table width="600" height="295" orderride border="0" borderstyle="hidden" align="center" cellspacing="1" >
     			<tr><td colspan=2><h2>Menu for Wolf Samples</h2></td></tr>
-	            <tr><td colspan=3><h3>For help please contact Meagan Moeyaert,  mmoeyaert@nrdpfc.ca</h2></td></tr>
+	            <tr><td colspan=3><h3>For help please contact info@nrdpfc.ca</h2></td></tr>
 	            <tr><td colspan=3><h3>See below for information regarding the permits needed to send sample to NRDPFC.</h2></td></tr>
-				<tr><td colspan=2> Logged in as: <%= current_user.name%> on Project <%=@prid%> on <%=@host%></td><td></td></tr>
- <tr><td>current_user.project <%=current_user.project_id%>
+				<tr><td colspan=3> Logged in as: <%= current_user.name%> ID <%=@pr_id	%></td><tr>
+				<tr><td colspan=3>Project: <%=@pr_desc%> </td></tr>
+				<tr><td><p></p></td></tr>
  				<tr><td width=30% ><%= link_to 'Submit Sample', new_sample_path %></td><td width=70%>Click here to submit samples into the DNA databank</td></tr>
 				<tr><td><%= link_to 'Edit and Track Sample', samples_path %></td><td>Click here to Track Samples or add information to a previously entered sample</td></tr>
 				<tr><td><%= link_to "Logout", :controller => "/account", :action => "logout" %></td><td>Exit the system</td></tr>
 				<tr><td><%= error_messages_for :user %></td></tr>
+				<tr><td><p></p></td></tr>
+    			<tr><td colspan=2><a href="importexport.pdf">Importing and Exporting Samples for Scientific Research</a></td></tr>
           </table>
           <p align="left">&nbsp;</p>
           <p align="left">&nbsp;</p>
 			<tr>
               <td><div align="center">
-              	<%= image_tag "dfo.jpg", :alt => "1", :width => "228", :height => "50", :border => "0" %>
 				<%= image_tag "trentu.jpg", :alt => "1", :width => "162", :height => "50", :border => "0" %>
-				<%= image_tag "wwf.jpg", :alt => "1", :width => "37", :height => "50", :border => "0" %>
 				<%= image_tag "nrdpfc.jpg", :alt => "1", :width => "67", :height => "50", :border => "0"  %>
-				<%= image_tag "nea.jpg", :alt => "1", :width => "111", :height => "50", :border => "0" %>
-				<%= image_tag "canadianwhale.jpg", :alt => "1", :width => "153", :height => "50", :border => "0" %>
 				</div></td>
 			</tr>
       </table>

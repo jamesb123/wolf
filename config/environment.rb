@@ -73,7 +73,7 @@ Rails::Initializer.run do |config|
     :tls              => false, 
     :address          => "burrett.org", 
     :port             => 26, 
-   :domain           => "burrett.org", 
+    :domain           => "burrett.org", 
     :authentication   => :plain,
     :user_name        => "nrdpfc@burrett.org", 
     :password         => "nrdpfc12" 

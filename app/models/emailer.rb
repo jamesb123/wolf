@@ -15,8 +15,8 @@ class Emailer < ActionMailer::Base
  def submission(recipient, subject, name, project_id, field_code, date_submitted, shipping_date, sent_at = Time.now)
       @subject = subject
       @recipients = recipient
-      @from = 'nrdpfc@burrett.org'
-      @reply_to ='nobody'
+      @from = 'info@nrdpfc.ca'
+      @reply_to ='info@nrdpfc.ca'
       @sent_on = sent_at
       @body["name"] = name
       @body["email"] = recipient

@@ -17,7 +17,7 @@ text-align:left;
 	  <tr>
 		<td width="900" height="450" align="center" valign="top" bgcolor="#FFFFFF"><table width="900" height="169" border="0">
           <tr>
-            <th scope="col"><p><%= image_tag "wolfheader.jpg", :width => "900", :height => "169" %></p>
+            <th scope="col"><p><%= image_tag "wolfheader4.jpg", :width => "900", :height => "169" %></p>
               </th>
           </tr>
         </table>
@@ -50,7 +50,6 @@ text-align:left;
 	<tr><td><%= f.label :longitude %></td><td><%= f.text_field :locality %></td><td>Example: Lat: 44.356, Long -78.275</td></tr>
 	<tr><td><%= f.label :location_accuracy %></td><td><%= f.collection_select(:location_accuracy , Sample::ACC, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:150px" } ) %></td><td>Choose Location Accuracy from drop down list</td></tr>
 	<tr><td><%= f.label :location_measurement_method %></td><td><%= f.collection_select(:location_measurement_method , Sample::LMM, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Location Measurement Method drop down list</td></tr>
-	<tr><td><%= f.label :organization_id, 'Collected by'%></td><td><%= f.collection_select( :organization_id, Organization.find(:all), :id, :org_name,{ :include_blank => true,  :prompt => true }, {"style" => "width:100px" }) %></td><td>The team who collected the sample</td></tr>
 	<tr><td><%= f.label :text_tissue_type %></td><td><%= f.collection_select( :text_tissue_type , Sample::TT, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
 	<tr><td><%= f.label :scat_condition %></td><td><%= f.collection_select( :condition , Sample::SCAT, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:300px" } ) %></td><td>Choose Scat Condition if applicable</td></tr>
 	<tr><td><%= f.label :scat_age %></td><td><%= f.collection_select( :age , Sample::AGE, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Scat age if applicable</td></tr>
