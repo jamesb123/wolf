@@ -1,0 +1,15 @@
+Dec 
+ 4	13:30-14:30	1.0	add FK to mhc and y-chrom sequence tables
+ 11	11:00-11:30	.5	test and change comment field 
+ 11	14:00-15:00	1.0	change Wolf data entry - remove fields, remove whale info
+ 12	11:00-12:00	1.0	change comments field type, change DNA extraction date range, 
+ 17	9:25-10:00	.5	linda's changes to wolf
+ 19	20:00-20:30	.5	ditto
+ 22	16:30-17:00	.5	add image upload to samples
+Jan 
+ 13	16:00-17:00	.5	finish sample image upload 
+	19:00-19:30	.5	wildcard query builder changes
+ 14	16:00-16:30	.5	install changes
+ 15	10:45-11:45	1.0	image/file attachment to wolf data entry	
+			----
+			7.5 hours		

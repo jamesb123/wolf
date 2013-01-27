@@ -46,7 +46,7 @@ text-align:left;
 	<table width="905" height="395" border="0" align="left" cellspacing="2" cellpadding = "2">
 		<tr><th>Name</th><th>Value</th><th>Description</th></tr>
          <tr></tr>
-	<% form_for(@sample) do |f| %>
+	<% form_for(@sample, :html => {:multipart => true}) do |f| %> 
 	<%= f.error_messages %>
 	<tr><td  width="25%"><%= f.label :submitted_by %></td><td width = "35%" ><%= f.text_field :submitted_by %></td><td width = "40%" > Current user Logged in</td></tr>
 	<tr><td><%= f.label :field_code %></td><td><%= f.text_field :field_code %></td><td>How you've labeled the sample</td></tr>
@@ -59,11 +59,11 @@ text-align:left;
 	<tr><td><%= f.label :country %></td><td><%= f.country_select(:country, ['CA','US'], options={},{"style" => "width:150px" } ) %></td><td>Choose Country from drop down list</td></tr>
 	<tr><td><%= f.label :province %></td><td><%= f.text_field :province %></td><td>Enter Province</td></tr>
 	<tr><td><%= f.label :locality %></td><td><%= f.text_field :locality %></td><td>Name of the nearest town, park, etc.</td></tr>
-	<tr><td><%= f.label :latitude %></td><td><%= f.text_field :locality %></td><td>Coordinates, if available in Decimal degrees.</td></tr>
+	<tr><td><%= f.label :latitude %></td><td><%= f.text_field :locality %></td><td>Coordinates in Decimal degrees NAD83.</td></tr>
 	<tr><td><%= f.label :longitude %></td><td><%= f.text_field :locality %></td><td>Example: Lat: 44.356, Long -78.275</td></tr>
 	<tr><td><%= f.label :location_accuracy %></td><td><%= f.collection_select(:location_accuracy , Sample::ACC, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:150px" } ) %></td><td>Choose Location Accuracy from drop down list</td></tr>
 	<tr><td><%= f.label :location_measurement_method %></td><td><%= f.collection_select(:location_measurement_method , Sample::LMM, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Location Measurement Method drop down list</td></tr>
-	<tr><td><%= f.label :text_tissue_type %></td><td><%= f.collection_select( :text_tissue_type , Sample::TT, :to_s, :to_s, {:include_blank => true, :prompt => true }, {"style" => "width:105px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
+	<tr><td><%= f.label :text_tissue_type, 'Tissue Type'%></td><td><%= f.collection_select( :text_tissue_type , Sample::TT, :to_s, :to_s, {:include_blank => true, :prompt => true }, {"style" => "width:105px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
 	<tr><td><%= f.label :condition, 'Scat Condition' %></td><td><%= f.collection_select( :condition , Sample::SCAT, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
 	<tr><td><%= f.label :age, 'Scat Age' %></td><td><%= f.collection_select( :age , Sample::AGE, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
 	<tr><td><%= f.label :rehydrated, 'Scat Rehydrated' %></td><td><%= f.collection_select( :rehydrated , Sample::YN, :to_s, :to_s, { :include_blank => true,  :prompt => true },{"style" => "width:100px" } ) %></td><td>Choose Tissue type from drop down list</td></tr>
@@ -73,6 +73,7 @@ text-align:left;
 	<tr><td><%= f.label :shippingmaterial_id, 'Shipping Medium'%></td><td><%= f.collection_select( :shippingmaterial_id, Shippingmaterial.find(:all), :id, :medium_short_desc,{ :include_blank => true,  :prompt => true }, {"style" => "width:200px" }) %></td><td>How is the sample packaged for shipping?</td></tr>
 	<tr><td><%= f.label :current_location, 'Tracking # (location)' %></td><td><%= f.text_field :current_location %></td><td>Courier tracker # if available</td></tr>
 	<tr><td><%= f.label :comments, 'Sample Comments' %></td><td><%= f.text_field :comments %></td><td>Any other comments relevant to this sample</td></tr>
+	<tr><td><%=f.label :sample_image_1, 'Sample Image or File'%></td><td><%= file_column_field 'sample', 'sample_image1' %></td></tr>  
 
 	<%= f.hidden_field :project_id, {:value => @prid} %>
 	<%= f.hidden_field :user_id  %>

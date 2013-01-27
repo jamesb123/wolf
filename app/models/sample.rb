@@ -26,8 +26,15 @@ class Sample < ActiveRecord::Base
   
   before_save :assign_collected_YMD
   after_create :send_sample_mail
+  
+  file_column :sample_image1
+  
   def send_sample_mail
-     Emailer.deliver_submission("lindarutledge@icloud.com, mharnden@nrdpfc.ca, info@nrdpfc.ca, james@burrett.org", "New Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
+    if Rails.env.production?
+      Emailer.deliver_submission("lindarutledge@icloud.com, mharnden@nrdpfc.ca, info@nrdpfc.ca, james@burrett.org", "New Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
+    else
+      Emailer.deliver_submission("drburrett@gmail.com", "New TEST Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
+    end
   end
 
 

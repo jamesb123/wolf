@@ -27,7 +27,8 @@ Rails::Initializer.run do |config|
   # config.autoload_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
+  config.gem 'airbrake'
+
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
@@ -35,6 +36,7 @@ Rails::Initializer.run do |config|
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+  # config.plugins = [:all ]
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
@@ -65,11 +67,28 @@ Rails::Initializer.run do |config|
 #   :password => "nrdpfc12",
 #}
 
+# config/initializers/mailer_settings.rb
+
+#if Rails.env.production?
+#  ActionMailer::Base.smtp_settings = {
+#    :tls              => false, 
+#    :address          => "burrett.org", 
+#    :port             => 26, 
+#    :domain           => "burrett.org", 
+#    :authentication   => :plain,
+#    :user_name        => "nrdpfc@burrett.org", 
+#    :password         => "nrdpfc12" 
+#  }
+#else
+#  #different settings
+#
+#end
+
  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp 
   config.action_mailer.default_content_type = "text/html" 
   config.action_mailer.default_url_options = { :host => "burrett.org" } 
-  config.action_mailer.smtp_settings = { 
+ config.action_mailer.smtp_settings = { 
     :tls              => false, 
     :address          => "burrett.org", 
     :port             => 26, 

@@ -1,5 +1,4 @@
 <html>
-<%= stylesheet_link_tag "basic" %>
 
 <style type="text/css">
 
@@ -147,22 +146,26 @@ vertical-align:middle;
 		<%end%>
 
 		<%if @sample.comments.blank?%>
-			<tr><td class="empty">Comments</td></td><td><%= @sample.comments %></td>
+			<tr><td class="empty">Comments</td><td><%= @sample.comments %></td>
 		<%else%>
-			<tr><td class="nempty">Comments</td></td><td><%= @sample.comments %></td>
+			<tr><td class="nempty">Comments</td><td><%= @sample.comments %></td>
 		<%end%>
 
 	  	<%if @sample.profiling_date.blank?%>
-			<tr><td class="empty">Profiling Date</td></td><td><%= nice_date_display(@sample.profiling_date) %></td>
+			<tr><td class="empty">Profiling Date</td><td><%= nice_date_display(@sample.profiling_date) %></td>
 		<%else%>
-			<tr><td class="nempty">Profiling Date</td></td><td><%= nice_date_display(@sample.profiling_date) %></td>
+			<tr><td class="nempty">Profiling Date</td><td><%= nice_date_display(@sample.profiling_date) %></td>
 		<%end%>
 	  	
 		<%if @sample.profiling_completed.blank?%>
-			<tr><td class="empty">Profiling Completed</td></td><td><%= @sample.profiling_completed.yesno %></td>
+			<tr><td class="empty">Profiling Completed</td><td><%= @sample.profiling_completed.yesno %></td>
 		<%else%>
-			<tr><td class="nempty">Profiling Completed</td></td><td><%= @sample.profiling_completed.yesno %></td>
+			<tr><td class="nempty">Profiling Completed</td><td><%= @sample.profiling_completed.yesno %></td>
 		<%end%>
+<tr><td> Attachment </td><td><%=@sample.sample_image1%><td></tr>
+<tr><td> URL <%= url_for_file_column( 'sample' ,'sample_image1') %></td></tr>
+<tr><td> LINK <%= link_to "Download", url_for_file_column(@sample, "sample_image1", :absolute => true) %></td></tr>
+	
 </div>
 
 </table>

@@ -1,9 +1,4 @@
 <html>
-<%if @pr_id = 64%>
-<%= stylesheet_link_tag "MEC" %>
-<%else%>
-<%= stylesheet_link_tag "basic" %>
-<%end%>
 <style type="text/css">
 table, td, th
 {
@@ -30,7 +25,7 @@ color:black;
     			<tr><td colspan=2><h2>Menu for Wolf Samples</h2></td></tr>
 	            <tr><td colspan=3><h3>For help please contact info@nrdpfc.ca</h2></td></tr>
 	            <tr><td colspan=3><h3>See below for information regarding the permits needed to send sample to NRDPFC.</h2></td></tr>
-				<tr><td colspan=3> Logged in as: <%= current_user.name%> ID <%=@pr_id	%></td><tr>
+				<tr><td colspan=3> Logged in as: <%= current_user.name%> Project ID <%=@pr_id	%></td><tr>
 				<tr><td colspan=3>Project: <%=@pr_desc%> </td></tr>
 				<tr><td><p></p></td></tr>
  				<tr><td width=30% ><%= link_to 'Submit Sample', new_sample_path %></td><td width=70%>Click here to submit samples into the DNA databank</td></tr>
