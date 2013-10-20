@@ -3,7 +3,6 @@
 # automatically included into ActionView::Base, thereby making this module's
 # methods available in all your views.
 module FileColumnHelper
-  
   # Use this helper to create an upload field for a file_column attribute. This will generate
   # an additional hidden field to keep uploaded files during form-redisplays. For example,
   # when called with
@@ -74,9 +73,6 @@ module FileColumnHelper
     
     relative_path = object.send("#{method}_relative_path", subdir)
     return nil unless relative_path
-
-# url = "/"
-# url << object.send("#{method}_options")[:base_url] << "/"
 
     url = ""
     url << ActionController::Base.relative_url_root.to_s if absolute
@@ -151,3 +147,33 @@ module FileColumnHelper
     end
   end
 end
+
+# display file name if exists with option to delete
+  def file_column_edit(object, method, options={})
+        if @object.send(method) 
+          # we already have a value?  display the form for deletion.
+          content_tag(
+            :div, 
+            content_tag(
+              :div, 
+              get_method_value(@object, method) + " " +
+              hidden_field(:object, "delete_#{method.name}", :value => "false") +
+              " | " +
+              link_to_function(as_("Remove file"), "$(this).previous().value='true'; p=$(this).up(); p.hide(); p.next().show();"),
+              {}
+            ) +
+            content_tag(
+              :div,
+              file_method_field("object", method.name ),
+              :style => "display: none"
+            ),
+            {}
+          )
+        else
+          # no, just display the file_method_field
+          file_method_field("object", "method")
+        end
+ end
+    
+
+

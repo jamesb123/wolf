@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :samples
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -11,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
   # This route can be invoked with purchase_url(:id => product.id)
   map.menu 'menu', :controller => 'samples', :action => 'menu'
-
+  
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   map.resources :products
 

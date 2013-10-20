@@ -4,6 +4,8 @@
 require "current_project_helpers"
 require 'carmen'
 include Carmen
+Carmen.default_country = 'CA'
+
 
 MM = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 # MM = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
@@ -22,6 +24,7 @@ SCAT = ["A+ = scat was wet, shiny, steaming",
 AGE = ["<12 hours","<24 hours","<36 hours","<48 hours",">48 hours","Unknown"]
 YN = ["Yes","No"]  
 
+  
   def nice_date_display(the_date)
     return (the_date ? the_date.strftime('%Y.%m.%d') : '')
   end

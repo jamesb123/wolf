@@ -1,7 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-#  include ActiveUploadHelper
-
 
   def project_form_column(record, input_name)
     projects = current_user.is_admin ?
@@ -11,11 +9,6 @@ module ApplicationHelper
     select_tag('record[project][id]', options_for_select(projects.collect{|project| [project.name, project.id]}, record.project_id), {:id => 'record_project_id', :class => 'project-id-input'})
   end
   
-# moved to users helper  
-#  def user_form_column(record, input_name)
-#    select_tag('record[user][id]', options_for_select(User.find_everybody_but_me.collect{|user| [user.login, user.id]}, record.user_id), {:id => 'record_user_id', :class => 'user-id-input'})
-#  end
-
   # TODO this is pretty tightly tied to code in views/layouts/tabs.rhtml
   def build_sub_tabs(sub_tabs)
     list = sub_tabs.collect do |sub_tab|

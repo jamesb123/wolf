@@ -46,6 +46,7 @@ text-align:left;
 	<table width="905" height="395" border="0" align="left" cellspacing="2" cellpadding = "2">
 		<tr><th>Name</th><th>Value</th><th>Description</th></tr>
          <tr></tr>
+
 	<% form_for(@sample, :html => {:multipart => true}) do |f| %> 
 	<%= f.error_messages %>
 	<tr><td  width="25%"><%= f.label :submitted_by %></td><td width = "35%" ><%= f.text_field :submitted_by %></td><td width = "40%" > Current user Logged in</td></tr>

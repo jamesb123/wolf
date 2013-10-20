@@ -32,7 +32,7 @@ vertical-align:middle;
 <div align="center">
 
 <% if ENV['RAILS_SITE'] == 'TRACKER' %>
-	<h3 style=background-color:yellow><%= link_to 'DEMO Home', menu_path %></h3>
+	<h3 style=background-color:yellow><%= link_to 'DEMO2 Home', menu_path %></h3>
 <%else%>
 	<h3><%= link_to 'Home', menu_path %></h3>
 <%end%>	
@@ -162,10 +162,13 @@ vertical-align:middle;
 		<%else%>
 			<tr><td class="nempty">Profiling Completed</td><td><%= @sample.profiling_completed.yesno %></td>
 		<%end%>
-<tr><td> Attachment </td><td><%=@sample.sample_image1%><td></tr>
-<tr><td> URL <%= url_for_file_column( 'sample' ,'sample_image1') %></td></tr>
-<tr><td> LINK <%= link_to "Download", url_for_file_column(@sample, "sample_image1", :absolute => true) %></td></tr>
-	
+
+		<% if !@sample.sample_image1.nil? %>
+			<tr><td>
+			<tr><td><%= 'Attachment ' + File.basename(@sample.sample_image1.to_s) %><td><%= link_to "Click to Download", url_for_file_column(@sample, "sample_image1", :absolute => true) %></td></tr>
+			<tr><td colspan=2><%= image_tag url_for_file_column('sample', 'sample_image1'), :align=>'center', :width => '160'  %>
+			</td></tr>	
+		<%end%>
 </div>
 
 </table>

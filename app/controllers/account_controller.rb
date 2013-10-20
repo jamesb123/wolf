@@ -13,6 +13,7 @@ class AccountController < ApplicationController
   end
 ############ LOGIN
 def login
+
     if @prid == 0 
       redirect_to :controller => '/account', :action => 'project_number_zero' , :notice => "PROJECT NUMBER IS ZERO<br> USE WOLF7 or WOLF64"
       return
