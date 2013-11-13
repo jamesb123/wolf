@@ -1,11 +1,6 @@
 class Sample < ActiveRecord::Base
 
   belongs_to :organism
-  belongs_to :locality_type
-  belongs_to :shippingmaterial
-  belongs_to :organization
-  belongs_to :extraction_method
-  belongs_to :storage_medium
   belongs_to :user
   belongs_to :organization
   
@@ -25,17 +20,18 @@ class Sample < ActiveRecord::Base
   accepts_nested_attributes_for :mt_dnas
   
   before_save :assign_collected_YMD
-  after_create :send_sample_mail
   
   file_column :sample_image1
-  
-  def send_sample_mail
-    if Rails.env.production?
-      Emailer.deliver_submission("lindarutledge@icloud.com, mharnden@nrdpfc.ca, info@nrdpfc.ca, james@burrett.org", "New Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
-    else
-      Emailer.deliver_submission("drburrett@gmail.com", "New TEST Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
-    end
-  end
+
+# done in contoller now  
+#  after_create :send_sample_mail
+#  def send_sample_mail
+#    if Rails.env.production?
+#      Emailer.deliver_submission("lindarutledge@icloud.com, mharnden@nrdpfc.ca, info@nrdpfc.ca, james@burrett.org", "New Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
+#    else
+#      Emailer.deliver_submission("drburrett@gmail.com", "New TEST Sample Submitted", self.submitted_by, self.project_id, self.field_code,self.date_submitted,self.shipping_date ) 
+#    end
+#  end
 
 
   def assign_collected_YMD

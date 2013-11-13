@@ -69,6 +69,7 @@ class SamplesController < ApplicationController
     @sample = Sample.new(params[:sample])
     respond_to do |format|
       if @sample.save
+        Emailer.deliver_submission(EMAIL_SAMPLES, "New Sample Submitted by "+ @sample.submitted_by, @sample.collected_by, @sample.project_id.to_s, @sample.date_collected.to_s ) 
         flash[:notice] = 'Sample was successfully created.'
         format.html { redirect_to(@sample) }
         format.xml  { render :xml => @sample, :status => :created, :location => @sample }

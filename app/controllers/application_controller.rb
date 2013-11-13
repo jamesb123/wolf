@@ -3,9 +3,12 @@
 
 require "current_project_helpers"
 require 'carmen'
+require 'faster_csv'
 include Carmen
 Carmen.default_country = 'CA'
 
+# EMAIL_SAMPLES = "lrutledge@nrdpfc.ca, mharnden@nrdpfc.ca, info@nrdpfc.ca, james@burrett.org"
+EMAIL_SAMPLES = "james@burrett.org"
 
 MM = ["1","2","3","4","5","6","7","8","9","10","11","12"]
 # MM = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]

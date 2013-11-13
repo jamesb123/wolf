@@ -1,3 +1,4 @@
+# data entry wolf
 # data entry project Be sure to restart your server when you modify this file
 # require 'thread'
 
@@ -68,20 +69,6 @@ Rails::Initializer.run do |config|
 
 # config/initializers/mailer_settings.rb
 
-#if Rails.env.production?
-#  ActionMailer::Base.smtp_settings = {
-#    :tls              => false, 
-#    :address          => "burrett.org", 
-#    :port             => 26, 
-#    :domain           => "burrett.org", 
-#    :authentication   => :plain,
-#    :user_name        => "nrdpfc@burrett.org", 
-#    :password         => "nrdpfc12" 
-#  }
-#else
-#  #different settings
-#
-#end
 
  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp 
